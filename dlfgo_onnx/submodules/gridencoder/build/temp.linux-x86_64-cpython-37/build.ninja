@@ -1,0 +1,29 @@
+ninja_required_version = 1.3
+cxx = /home/igjeong/.conda/envs/gaussian_splatting/bin/x86_64-conda-linux-gnu-c++
+nvcc = /usr/local/cuda-11.7/bin/nvcc
+
+cflags = -Wno-unused-result -Wsign-compare -DNDEBUG -fwrapv -O2 -Wall -Wstrict-prototypes -march=nocona -mtune=haswell -ftree-vectorize -fPIC -fstack-protector-strong -fno-plt -O2 -pipe -march=nocona -mtune=haswell -ftree-vectorize -fPIC -fstack-protector-strong -fno-plt -O2 -pipe -march=nocona -mtune=haswell -ftree-vectorize -fPIC -fstack-protector-strong -fno-plt -O2 -ffunction-sections -pipe -isystem /home/igjeong/.conda/envs/dlfgo/include -march=nocona -mtune=haswell -ftree-vectorize -fPIC -fstack-protector-strong -fno-plt -O2 -ffunction-sections -pipe -isystem /home/igjeong/.conda/envs/dlfgo/include -march=nocona -mtune=haswell -ftree-vectorize -fPIC -fstack-protector-strong -fno-plt -O2 -ffunction-sections -pipe -isystem /home/igjeong/.conda/envs/dlfgo/include -I/home/igjeong/.conda/envs/dlfgo/targets/x86_64-linux/include -L/home/igjeong/.conda/envs/dlfgo/targets/x86_64-linux/lib -L/home/igjeong/.conda/envs/dlfgo/targets/x86_64-linux/lib/stubs -DNDEBUG -D_FORTIFY_SOURCE=2 -O2 -isystem /home/igjeong/.conda/envs/dlfgo/include -DNDEBUG -D_FORTIFY_SOURCE=2 -O2 -isystem /home/igjeong/.conda/envs/dlfgo/include -DNDEBUG -D_FORTIFY_SOURCE=2 -O2 -isystem /home/igjeong/.conda/envs/dlfgo/include -I/home/igjeong/.conda/envs/dlfgo/targets/x86_64-linux/include -L/home/igjeong/.conda/envs/dlfgo/targets/x86_64-linux/lib -L/home/igjeong/.conda/envs/dlfgo/targets/x86_64-linux/lib/stubs -fPIC -I/home/igjeong/.conda/envs/gaussian_splatting/lib/python3.7/site-packages/torch/include -I/home/igjeong/.conda/envs/gaussian_splatting/lib/python3.7/site-packages/torch/include/torch/csrc/api/include -I/home/igjeong/.conda/envs/gaussian_splatting/lib/python3.7/site-packages/torch/include/TH -I/home/igjeong/.conda/envs/gaussian_splatting/lib/python3.7/site-packages/torch/include/THC -I/usr/local/cuda-11.7/include -I/home/igjeong/.conda/envs/gaussian_splatting/include/python3.7m -c
+post_cflags = -O3 -std=c++14 -DTORCH_API_INCLUDE_EXTENSION_H '-DPYBIND11_COMPILER_TYPE="_gcc"' '-DPYBIND11_STDLIB="_libstdcpp"' '-DPYBIND11_BUILD_ABI="_cxxabi1011"' -DTORCH_EXTENSION_NAME=_gridencoder -D_GLIBCXX_USE_CXX11_ABI=0
+cuda_cflags = -I/home/igjeong/.conda/envs/gaussian_splatting/lib/python3.7/site-packages/torch/include -I/home/igjeong/.conda/envs/gaussian_splatting/lib/python3.7/site-packages/torch/include/torch/csrc/api/include -I/home/igjeong/.conda/envs/gaussian_splatting/lib/python3.7/site-packages/torch/include/TH -I/home/igjeong/.conda/envs/gaussian_splatting/lib/python3.7/site-packages/torch/include/THC -I/usr/local/cuda-11.7/include -I/home/igjeong/.conda/envs/gaussian_splatting/include/python3.7m -c
+cuda_post_cflags = -D__CUDA_NO_HALF_OPERATORS__ -D__CUDA_NO_HALF_CONVERSIONS__ -D__CUDA_NO_BFLOAT16_CONVERSIONS__ -D__CUDA_NO_HALF2_OPERATORS__ --expt-relaxed-constexpr --compiler-options ''"'"'-fPIC'"'"'' -O3 -std=c++14 -U__CUDA_NO_HALF_OPERATORS__ -U__CUDA_NO_HALF_CONVERSIONS__ -U__CUDA_NO_HALF2_OPERATORS__ -DTORCH_API_INCLUDE_EXTENSION_H '-DPYBIND11_COMPILER_TYPE="_gcc"' '-DPYBIND11_STDLIB="_libstdcpp"' '-DPYBIND11_BUILD_ABI="_cxxabi1011"' -DTORCH_EXTENSION_NAME=_gridencoder -D_GLIBCXX_USE_CXX11_ABI=0 -gencode=arch=compute_75,code=sm_75 -gencode=arch=compute_86,code=compute_86 -gencode=arch=compute_86,code=sm_86 -ccbin /home/igjeong/.conda/envs/gaussian_splatting/bin/x86_64-conda-linux-gnu-cc
+ldflags = 
+
+rule compile
+  command = $cxx -MMD -MF $out.d $cflags -c $in -o $out $post_cflags
+  depfile = $out.d
+  deps = gcc
+
+rule cuda_compile
+  depfile = $out.d
+  deps = gcc
+  command = $nvcc  $cuda_cflags -c $in -o $out $cuda_post_cflags
+
+
+
+build /home/igjeong/dlfgo/lib/gridencoder/build/temp.linux-x86_64-cpython-37/home/igjeong/dlfgo/lib/gridencoder/src/bindings.o: compile /home/igjeong/dlfgo/lib/gridencoder/src/bindings.cpp
+build /home/igjeong/dlfgo/lib/gridencoder/build/temp.linux-x86_64-cpython-37/home/igjeong/dlfgo/lib/gridencoder/src/gridencoder.o: cuda_compile /home/igjeong/dlfgo/lib/gridencoder/src/gridencoder.cu
+
+
+
+
+

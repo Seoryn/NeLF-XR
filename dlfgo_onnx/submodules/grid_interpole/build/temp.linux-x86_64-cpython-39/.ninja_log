@@ -1,0 +1,5 @@
+# ninja log v5
+0	16698	1751980047544228657	/home/seoryn/onnx/dlfgo_onnx/submodules/grid_interpole/build/temp.linux-x86_64-cpython-39/cuda/bindings.o	b8f4ccb5863bdad3
+0	71656	1751980102504229764	/home/seoryn/onnx/dlfgo_onnx/submodules/grid_interpole/build/temp.linux-x86_64-cpython-39/cuda/grid_interpole.o	b8465f5e9e3cc6d
+33	18969	1758516256173579226	/home/seoryn/onnx/dlfgo_onnx/submodules/grid_interpole/build/temp.linux-x86_64-cpython-39/cuda/bindings.o	a4afa7f5e3a00ac9
+33	93913	1758516331085576005	/home/seoryn/onnx/dlfgo_onnx/submodules/grid_interpole/build/temp.linux-x86_64-cpython-39/cuda/grid_interpole.o	ccc7df896090fb1

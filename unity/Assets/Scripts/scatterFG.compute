@@ -1,0 +1,20 @@
+#pragma kernel CSMain
+
+StructuredBuffer<uint> FGIndex;   // 길이 = N_fg, 값 = y*W + x
+StructuredBuffer<float4> FGColor; // 길이 = N_fg, 모델 출력 RGBA (0~1)
+RWTexture2D<float4> Target;       // 최종 출력 RT (W×H)
+
+cbuffer Params { uint _NFG; uint _Width; };
+
+[numthreads(256,1,1)]
+void CSMain (uint3 id : SV_DispatchThreadID)
+{
+    uint i = id.x;
+    if (i >= _NFG) return;
+
+    uint idx = FGIndex[i];
+    uint x = idx % _Width;
+    uint y = idx / _Width;
+
+    Target[int2(x,y)] = FGColor[i];
+}
