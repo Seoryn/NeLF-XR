@@ -2,8 +2,10 @@
 Meta Quest 3 환경에서 사용자 시점 변화에 대응하는
 **Neural Light Field(NeLF) 기반 XR 렌더링 및 모델 경량화 프로젝트**입니다.
 
-![NeLF XR Demo](assets/demo.gif)
-![FG Result](assets/result_fg.jpg)
+<p align="center">
+  <img src="assets/demo.gif" width="45%">
+  <img src="assets/result_fg.jpg" width="45%">
+</p>
 
 ## 프로젝트 소개
 - PyTorch 기반 NeLF 모델 학습
