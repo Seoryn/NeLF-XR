@@ -30,16 +30,11 @@ Meta Quest 3 환경에서 사용자 시점 변화에 대응하는
 - **LR Decay** : 0.995 / epoch
 
 ## 프로젝트 구조
+```text
 NeLF-XR/
-
 ├── training/      # NeLF 모델 학습 및 평가 코드
-
 ├── models/        # 학습 모델
-
 ├── models_fg/     # Foreground 학습 모델
-
 ├── preds/         # 해상도별 Prediction 결과
-
 ├── unity/         # Unity XR 프로젝트
-
 └── README.md
